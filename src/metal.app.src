@@ -1,0 +1,11 @@
+{application, metal, [
+  {applications, [kernel, stdlib]},
+  {description, "Lightweight server behaviour"},
+  {env, []},
+  {licenses, ["MIT"]},
+  {links, [{"GitHub", "https://github.com/lpgauth/metal"}]},
+  {maintainers, ["Louis-Philippe Gauthier"]},
+  {mod, []},
+  {registered, []},
+  {vsn, "0.1.0"}
+]}.
