@@ -40,10 +40,10 @@ Lightweight Erlang server behaviour
 ]).
 
 start_link(Name) ->
-    metal:start_link(?MODULE, Name, undefined).
+    metal:start_link(?MODULE, Name, Opts).
 
 %% metal callbacks
-init(_Name, _Parent, State) ->
+init(_Name, _Parent, Opts) ->
     {ok, State}.
 
 handle_msg(_Msg, State) ->
