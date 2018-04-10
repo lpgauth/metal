@@ -22,7 +22,7 @@
     {ok, State :: term()} | {stop, Reason :: atom()}.
 
 -callback handle_msg(Msg :: term(), State :: term()) ->
-    {ok, State :: term()}.
+    {ok, State :: term()} | {stop, Reason :: atom()}.
 
 -callback terminate(Reason :: term(), State :: term()) ->
     ok.
@@ -85,8 +85,12 @@ loop(Module, Name, Parent, State) ->
         {'EXIT', Parent, Reason} ->
             terminate(Module, Reason, State);
         Msg ->
-            {ok, State2} = Module:handle_msg(Msg, State),
-            loop(Module, Name, Parent, State2)
+            case Module:handle_msg(Msg, State) of
+                {ok, State2} ->
+                    loop(Module, Name, Parent, State2);
+                {stop, Reason} ->
+                    terminate(Module, Reason, State)
+            end
     end.
 
 module_init(Module, Name, Parent, State) ->

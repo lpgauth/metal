@@ -33,7 +33,9 @@ init(stop, _Parent, _Opts) ->
 
 handle_msg(crash, _State) ->
     exit(crash);
-handle_msg({ping, Pid} , State) ->
+handle_msg(stop, _State) ->
+    {stop, normal};
+handle_msg({ping, Pid}, State) ->
     Pid ! pong,
     {ok, State}.
 

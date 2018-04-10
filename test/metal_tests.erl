@@ -14,10 +14,7 @@ metal_test() ->
     exit(Pid, normal),
     {error, normal} = test_server:start_link(stop),
     {ok, Sup} = supervisor:start_link(test_sup, []),
-    {ok, Pid2} = supervisor:start_child(Sup, {server,
-        {test_server, start_link, [server]},
-        permanent, 5000, worker, [test_server]}),
-
+    {ok, Pid2} = supervisor:start_child(Sup, ?CHILD(server)),
     {error, {already_started, Pid2}} =
         supervisor:start_child(Sup, ?CHILD(server)),
 
@@ -32,7 +29,12 @@ metal_test() ->
 
     {ok, Pid3} = test_server2:start_link(server),
     ping(),
-    exit(Pid3, normal).
+    exit(Pid3, normal),
+
+    {ok, Pid4} = supervisor:start_child(Sup, ?CHILD(server)),
+    server ! stop,
+    timer:sleep(50),
+    undefined = process_info(Pid4).
 
 %% private
 ping() ->
