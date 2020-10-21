@@ -34,7 +34,7 @@
 
 %% public
 -spec start_link(module(), atom(), term()) ->
-    {ok, pid()}.
+    {ok, pid()} | {error, term()}.
 
 start_link(Module, Name, State) ->
     proc_lib:start_link(?MODULE, init, [Module, Name, self(), State]).
