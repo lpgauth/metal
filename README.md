@@ -2,8 +2,11 @@
 
 Lightweight Erlang server behaviour
 
-[![Build Status](https://travis-ci.org/lpgauth/metal.svg?branch=master)](https://travis-ci.org/lpgauth/metal)
-[![Coverage Status](https://coveralls.io/repos/github/lpgauth/metal/badge.svg?branch=master)](https://coveralls.io/github/lpgauth/metal?branch=master)
+![Build Status](https://github.com/lpgauth/metal/workflows/Erlang%20CI/badge.svg)
+
+### Requirements
+
+* Erlang/OTP 25+
 
 ## API
 ### Behaviour callbacks
@@ -56,16 +59,13 @@ terminate(_Reason, _State) ->
 ## Tests
 
 ```makefile
-make dialyzer
-make elvis
-make eunit
-make xref
+make test
 ```
 ## License
 ```license
 The MIT License (MIT)
 
-Copyright (c) 2016-2017 Louis-Philippe Gauthier
+Copyright (c) 2016-2026 Louis-Philippe Gauthier
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

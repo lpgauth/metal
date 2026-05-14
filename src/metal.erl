@@ -59,7 +59,7 @@ system_code_change(State, _Module, _OldVsn, _Extra) ->
     {ok, State}.
 
 -spec system_continue(pid(), [], {module(), atom(), pid(), term()}) ->
-    ok.
+    no_return().
 
 system_continue(_Parent, _Debug, {Module, Name, Parent, State}) ->
     loop(Module, Name, Parent, State).
